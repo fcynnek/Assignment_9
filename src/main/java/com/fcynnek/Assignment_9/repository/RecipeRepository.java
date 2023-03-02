@@ -1,6 +1,6 @@
 package com.fcynnek.Assignment_9.repository;
 
-public class Recipe {
+public class RecipeRepository {
 
 	private Integer cookingMinutes;
     private Boolean dairyFree;
