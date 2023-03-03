@@ -12,6 +12,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 
+import com.fcynnek.Assignment_9.repository.RecipeRepository;
+
 @Service
 public class FileService {
 //Ingest a recipe.txt file and store this information in a Java Collection
@@ -22,7 +24,7 @@ public class FileService {
 		
 	}
 	
-	public List<String> readFile (String filename) throws IOException {
+	public List<RecipeRepository> readFile (String filename) throws IOException {
 		Reader in = new FileReader("recipes.txt");
 		Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
 		for (CSVRecord record : records) {
