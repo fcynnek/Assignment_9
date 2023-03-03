@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fcynnek.Assignment_9.repository.RecipeRepository;
 import com.fcynnek.Assignment_9.service.FileService;
 
 @RestController
@@ -21,16 +22,16 @@ public class FileController {
 	private FileService fileService;
 	
 	@GetMapping("/read-lines")
-	public List<String> readLines() throws IOException {
+	public List<RecipeRepository> readLines() throws IOException {
 		FileService fileService = appContext.getBean(FileService.class);
 		return fileService.readFile("recipes.txt");
 	}
 	
+	// these below will be calling methods that filters for each category from the file service
+	
 	@GetMapping("/gluten-free") //The “gluten-free” endpoint will only return a subset of the full Collection where glutenFree is true
 	public List<Boolean> glutenFree() throws IOException {
-//		FileService fileService = appContext.getBean(FileService.class);
-		readLines();
-//		if (gluten == true)
+		FileService fileService = appContext.getBean(FileService.class);
 		return null;
 	}
 	
