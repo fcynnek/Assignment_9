@@ -16,7 +16,21 @@ public class RecipeRepository {
     private Boolean vegetarian;
 	
     
-    public Integer getCookingMinutes() {
+	public RecipeRepository(Integer cookingMinutes, String instructions, Double preparationMinutes,
+			Double pricePerServing, Integer readyInMinutes, Integer servings, Double spoonacularScore, String title) {
+		super();
+		this.title = title;
+		this.spoonacularScore = spoonacularScore;
+		this.servings = servings;
+		this.pricePerServing = pricePerServing;
+		this.preparationMinutes = preparationMinutes;
+		this.cookingMinutes = cookingMinutes;
+		this.readyInMinutes = readyInMinutes;
+		this.instructions = instructions;
+	}
+
+
+	public Integer getCookingMinutes() {
 		return cookingMinutes;
 	}
 	public Boolean getDairyFree() {

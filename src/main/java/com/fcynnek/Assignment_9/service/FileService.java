@@ -6,6 +6,7 @@ import java.io.Reader;
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -25,26 +26,46 @@ public class FileService {
 	}
 	
 	public List<RecipeRepository> readFile (String filename) throws IOException {
-		Reader in = new FileReader("recipes.txt");
+		Reader in = new FileReader(filename);
+		List<RecipeRepository> recipes = new ArrayList<>();
 		Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
 		for (CSVRecord record : records) {
-			Integer cookingMins = Integer.parseInt(record.get("Cooking Minutes")) ;
-		    Boolean dairy = Boolean.parseBoolean(record.get("Dairy Free"));
-		    Boolean gluten = Boolean.parseBoolean(record.get("Gluten Free"));
-		    String instructions	= record.get("Instructions");
-		    String prepMins	= record.get("Preparation Minutes");
-		    Double priceServ	= Double.parseDouble(record.get("Price Per Serving"));
-		    Integer readyMins	= Integer.parseInt(record.get("Ready In Minutes"));
-		    Integer servings	= Integer.parseInt(record.get("Servings"));
-		    Double score	= Double.parseDouble(record.get("Spoonacular Score"));
-		    String title	= record.get("Title");
-		    Boolean vegan	= Boolean.parseBoolean(record.get("Vegan"));
-		    Boolean vegetarian	= Boolean.parseBoolean(record.get("Vegetarian"));
+			Boolean dairy = Boolean.parseBoolean(record.get("Dairy Free"));
+			Boolean gluten = Boolean.parseBoolean(record.get("Gluten Free"));
+			Boolean vegan	= Boolean.parseBoolean(record.get("Vegan"));
+			Boolean vegetarian	= Boolean.parseBoolean(record.get("Vegetarian"));
+			if ((dairy == true) || (gluten == true) || (vegan == true) || (vegetarian == true)) {				
+//				RecipeRepository recipe = new RecipeRepository();
+				String title	= record.get("Title");
+				Double score	= Double.parseDouble(record.get("Spoonacular Score"));
+				Integer servings	= Integer.parseInt(record.get("Servings"));
+				Double priceServ	= Double.parseDouble(record.get("Price Per Serving"));
+				Double prepMins	= Double.parseDouble(record.get("Preparation Minutes"));
+				Integer cookingMins = Integer.parseInt(record.get("Cooking Minutes")) ;
+				Integer readyMins	= Integer.parseInt(record.get("Ready In Minutes"));
+				String instructions	= record.get("Instructions");
+				
+				RecipeRepository recipe = new RecipeRepository(readyMins, instructions, priceServ, priceServ, readyMins, readyMins, priceServ, instructions);
+				recipe.setTitle(title);
+				recipe.setSpoonacularScore(score);
+				recipe.setServings(servings);
+				recipe.setPricePerServing(priceServ);
+				recipe.setPreparationMinutes(prepMins);
+				recipe.setCookingMinutes(cookingMins);
+				recipe.setReadyInMinutes(readyMins);
+				recipe.setInstructions(instructions);
+				recipes.add(recipe);
+			}
 		}
 		
-		return null;
+		return recipes;
 	}
 	
-	
+	public RecipeRepository[] dairyFree() {
+		
+		
+		return null;
+		
+	}
 	
 }
