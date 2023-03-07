@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fcynnek.Assignment_9.repository.RecipeRepository;
+import com.fcynnek.Assignment_9.repository.Recipe;
 import com.fcynnek.Assignment_9.service.FileService;
 
 @RestController
@@ -21,11 +21,11 @@ public class FileController {
 	@Autowired
 	private FileService fileService;
 	
-	@GetMapping("/read-lines")
-	public List<RecipeRepository> readLines() throws IOException {
-		FileService fileService = appContext.getBean(FileService.class);
-		return fileService.readFile("recipes.txt");
-	}
+//	@GetMapping("/read-lines")
+//	public List<Recipe> readLines() throws IOException {
+//		FileService fileService = appContext.getBean(FileService.class);
+//		return fileService.readFile("recipes.txt");
+//	}
 	
 	// these below will be calling methods that filters for each category from the file service
 	
