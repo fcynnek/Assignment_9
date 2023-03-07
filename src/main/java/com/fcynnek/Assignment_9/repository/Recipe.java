@@ -1,6 +1,6 @@
 package com.fcynnek.Assignment_9.repository;
 
-public class RecipeRepository {
+public class Recipe {
 
 	private Integer cookingMinutes;
     private Boolean dairyFree;
@@ -16,8 +16,8 @@ public class RecipeRepository {
     private Boolean vegetarian;
 	
     
-	public RecipeRepository(Integer cookingMinutes, String instructions, Double preparationMinutes,
-			Double pricePerServing, Integer readyInMinutes, Integer servings, Double spoonacularScore, String title) {
+	public Recipe(String title, Double spoonacularScore, Integer servings, Double pricePerServing,  
+			 Double preparationMinutes, Integer cookingMinutes, Integer readyInMinutes, String instructions) {
 		super();
 		this.title = title;
 		this.spoonacularScore = spoonacularScore;
@@ -28,6 +28,20 @@ public class RecipeRepository {
 		this.readyInMinutes = readyInMinutes;
 		this.instructions = instructions;
 	}
+	
+	
+
+
+	@Override
+	public String toString() {
+		return "Recipe [cookingMinutes=" + cookingMinutes + ", dairyFree=" + dairyFree + ", glutenFree=" + glutenFree
+				+ ", instructions=" + instructions + ", preparationMinutes=" + preparationMinutes + ", pricePerServing="
+				+ pricePerServing + ", readyInMinutes=" + readyInMinutes + ", servings=" + servings
+				+ ", spoonacularScore=" + spoonacularScore + ", title=" + title + ", vegan=" + vegan + ", vegetarian="
+				+ vegetarian + "]";
+	}
+
+
 
 
 	public Integer getCookingMinutes() {
