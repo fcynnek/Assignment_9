@@ -2,19 +2,21 @@ package com.fcynnek.Assignment_9.repository;
 
 public class Recipe {
 
+	private Boolean dairyFree;
+	private Boolean glutenFree;
+	private Boolean vegan;
+	private Boolean vegetarian;
+	private String title;
+	private Double spoonacularScore;
+	private Integer servings;
+	private Double pricePerServing;
+	private Double preparationMinutes;
 	private Integer cookingMinutes;
-    private Boolean dairyFree;
-    private Boolean glutenFree;
-    private String instructions;
-    private Double preparationMinutes;
-    private Double pricePerServing;
     private Integer readyInMinutes;
-    private Integer servings;
-    private Double spoonacularScore;
-    private String title;
-    private Boolean vegan;
-    private Boolean vegetarian;
+    private String instructions;
 	
+    
+    
     
 	public Recipe(String title, Double spoonacularScore, Integer servings, Double pricePerServing,  
 			 Double preparationMinutes, Integer cookingMinutes, Integer readyInMinutes, String instructions) {
@@ -34,11 +36,11 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [cookingMinutes=" + cookingMinutes + ", dairyFree=" + dairyFree + ", glutenFree=" + glutenFree
-				+ ", instructions=" + instructions + ", preparationMinutes=" + preparationMinutes + ", pricePerServing="
-				+ pricePerServing + ", readyInMinutes=" + readyInMinutes + ", servings=" + servings
-				+ ", spoonacularScore=" + spoonacularScore + ", title=" + title + ", vegan=" + vegan + ", vegetarian="
-				+ vegetarian + "]";
+		return "Recipe [dairyFree=" + dairyFree + ", glutenFree=" + glutenFree + ", vegan=" + vegan + ", vegetarian="
+				+ vegetarian + ", title=" + title + ", spoonacularScore=" + spoonacularScore + ", servings=" + servings
+				+ ", pricePerServing=" + pricePerServing + ", preparationMinutes=" + preparationMinutes
+				+ ", cookingMinutes=" + cookingMinutes + ", readyInMinutes=" + readyInMinutes + ", instructions="
+				+ instructions + "]";
 	}
 
 
@@ -80,6 +82,8 @@ public class Recipe {
 	public Boolean getVegetarian() {
 		return vegetarian;
 	}
+	
+	
 	
 	
 	public void setCookingMinutes(Integer cookingMinutes) {
