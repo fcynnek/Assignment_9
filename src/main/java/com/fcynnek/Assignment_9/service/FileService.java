@@ -1,5 +1,7 @@
 package com.fcynnek.Assignment_9.service;
 
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -7,8 +9,10 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -29,8 +33,13 @@ public class FileService {
 	
 	public List<Recipe> readFile (String filename) throws IOException {
 		Reader in = new FileReader(filename);
-		Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
+//		Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
+		Stream<CSVRecord> stream() {
 		for (CSVRecord record : records) {
+			
+			List<String> headers = records.iterator().next().getParser().getHeaderNames();
+			System.out.println(headers);
+			
 			Boolean dairy = Boolean.parseBoolean(record.get("Dairy Free"));
 			Boolean gluten = Boolean.parseBoolean(record.get("Gluten Free"));
 			Boolean vegan	= Boolean.parseBoolean(record.get("Vegan"));
@@ -51,30 +60,32 @@ public class FileService {
 			recipe.setVegan(vegan);
 			recipe.setVegetarian(vegetarian);
 
-			recipes.addAll((Collection<? extends Recipe>) recipe);
+			recipes.add(recipe);
 		}	
 		return recipes;
 	}
 	
-	public Recipe[] dairyFree() {
+	public List<Recipe> dairyFree() {
+		List<Recipe> dairyFreeRecipes = new ArrayList<>();
 		
 		for (Recipe recipe : recipes) {
 			if (recipe.getDairyFree() == true) {
-				recipe.getTitle();
-				recipe.getSpoonacularScore();
-				recipe.getServings();
-				recipe.getPricePerServing();
-				recipe.getPreparationMinutes();
-				recipe.getCookingMinutes();
-				recipe.getReadyInMinutes();
-				recipe.getInstructions();
+//				recipe.getTitle();
+//				recipe.getSpoonacularScore();
+//				recipe.getServings();
+//				recipe.getPricePerServing();
+//				recipe.getPreparationMinutes();
+//				recipe.getCookingMinutes();
+//				recipe.getReadyInMinutes();
+//				recipe.getInstructions();
+				dairyFreeRecipes.add(recipe);
 			}
-			
-			return recipe.toString();
+//			Recipe dairyFree = new Recipe(recipe.getTitle(), recipe.getSpoonacularScore(), recipe.getServings(), 
+//					recipe.getPricePerServing(), recipe.getPreparationMinutes(), recipe.getCookingMinutes(), recipe.getReadyInMinutes(), 
+//					recipe.getInstructions());
+//			recipe.toString();
 		}
-		
-		
-		return null;
+		return dairyFreeRecipes;
 		
 	}
 	
