@@ -16,18 +16,6 @@ public class Assignment9Application {
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(Assignment9Application.class, args);
 		
-//		FileService fs = new FileService();
-//		fs.readFile("recipes.txt");
-//		System.out.println("ALL");
-//		System.out.println(fs.allRecipes());
-//		System.out.println("DAIRY FREE");
-//		System.out.println(fs.dairyFree());
-//		System.out.println("VEGETARIAN");
-//		System.out.println(fs.vegetarian());
-//		System.out.println("VEGAN AND GF");
-//		System.out.println(fs.veganAndGlutenFree());
-		
-		
 	}
 
 }
