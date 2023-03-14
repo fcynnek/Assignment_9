@@ -17,7 +17,7 @@ public class FileService {
 //Ingest a recipe.txt file and store this information in a Java Collection
 	
 	private String filename = "recipes.txt";
-	List<Recipe> recipes = new ArrayList<>();
+	
 
 	
 	public FileService() {
@@ -26,6 +26,7 @@ public class FileService {
 	
 	public List<Recipe> readFile (String filename) throws IOException {
 		Reader in = new FileReader(filename);
+		List<Recipe> recipes = new ArrayList<>();
 		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withEscape('\\').withIgnoreSurroundingSpaces().withFirstRecordAsHeader().parse(in);
 		for (CSVRecord record : records) {
 			
@@ -56,14 +57,14 @@ public class FileService {
 	
 	public List<Recipe> allRecipes() throws IOException  {
 		readFile(filename);
-		return recipes;
+		return readFile(filename);
 	}
 	
 	public List<Recipe> dairyFree() throws IOException {
-		readFile(filename);
+		List<Recipe> allRecipes = readFile(filename);
 		List<Recipe> dairyFreeRecipes = new ArrayList<>();
 		
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : allRecipes) {
 			if (recipe.getDairyFree() == true) {
 				dairyFreeRecipes.add(recipe);
 			}
@@ -72,10 +73,10 @@ public class FileService {
 	}
 	
 	public List<Recipe> glutenFree() throws IOException {
-		readFile(filename);
+		List<Recipe> allRecipes = readFile(filename);
 		List<Recipe> glutenFreeRecipes = new ArrayList<>();
 		
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : allRecipes) {
 			if (recipe.getGlutenFree() == true) {
 				glutenFreeRecipes.add(recipe);
 			}
@@ -84,10 +85,10 @@ public class FileService {
 	}
 	
 	public List<Recipe> veganAndGlutenFree() throws IOException {
-		readFile(filename);
+		List<Recipe> allRecipes = readFile(filename);
 		List<Recipe> veganAndGFRecipes = new ArrayList<>();
 		
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : allRecipes) {
 			if ((recipe.getVegan() == true) && (recipe.getGlutenFree() == true)) {
 				veganAndGFRecipes.add(recipe);
 			}
@@ -96,10 +97,10 @@ public class FileService {
 	}
 	
 	public List<Recipe> vegan() throws IOException {
-		readFile(filename);
+		List<Recipe> allRecipes = readFile(filename);
 		List<Recipe> veganRecipes = new ArrayList<>();
 		
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : allRecipes) {
 			if (recipe.getVegan() == true) {
 				veganRecipes.add(recipe);
 			}
@@ -108,10 +109,10 @@ public class FileService {
 	}
 	
 	public List<Recipe> vegetarian() throws IOException {
-		readFile(filename);
+		List<Recipe> allRecipes = readFile(filename);
 		List<Recipe> vegetarianRecipes = new ArrayList<>();
 		
-		for (Recipe recipe : recipes) {
+		for (Recipe recipe : allRecipes) {
 			if (recipe.getVegetarian() == true) {
 				vegetarianRecipes.add(recipe);
 			}
